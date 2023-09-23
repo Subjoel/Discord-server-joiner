@@ -1,4 +1,8 @@
 import requests
+def GetProxies():
+    with open('proxies.txt', 'r') as temp_file:
+        proxies = [line.rstrip('\n') for line in temp_file]
+    return proxies
 
 link = input('Discord Invite Link: ')
 if len(link) > 6:
@@ -14,5 +18,5 @@ with open('tokens.txt','r') as handle:
             headers={
                 'Authorization': token
                 }
-            requests.post(apilink, headers=headers)
+            requests.post(apilink, headers=headers, proxies={"https://': 'http://" + GetProxies()})
         print ("All valid tokens have joined!")
